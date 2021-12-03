@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
+import DayCard from './DayCard'
 
 class WeekContainer extends Component {
 
     state = {
         fullData: [],
-        dailyData: []
+        dailyData: [],
+        degreeType: "celsius"
       }
     
+      updateForecastDegree = event => {
+        this.setState({
+          degreeType: event.target.value
+        }, () => console.log(this.state))
+      }
+      
 
     componentDidMount = () => {
         const weatherURL =
-        `http://api.openweathermap.org/data/2.5/forecast?lat=51.509865&lon=-0.118092&units=imperial&APPID=${process.env.API_KEY}`
+        'https://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&appid=adbf76917c402304a861796cc18fd9fe'
     
         fetch(weatherURL)
         .then(res => res.json())
         .then(data => {
-          const dailyData = data.list.filter(reading => reading.dt_txt.includes("18:00:00"))
+          const dailyData = data.list.filter((reading) => reading.dt_txt.includes("18:00:00"))
           this.setState({
             fullData: data.list,
             dailyData: dailyData
@@ -23,15 +31,25 @@ class WeekContainer extends Component {
         })
       }
     
-
-    render() {
+      formatDayCards = () => {
+        return this.state.dailyData.map((reading, index) => <DayCard reading={reading} key={index} />)
+      }
+    
+      render() {
         return (
-            <div>
-                <h1>Hello world</h1>
+          <div className="container">
+          <h1 className="display-1 jumbotron">5 Days Forecast</h1>
+          <h5 className="display-5 text-muted">LONDON, UK</h5>
+            <div className="row justify-content-center">
+    
+              {this.formatDayCards()}
+    
             </div>
+          </div>
         )
-    }
-};
+      }
+}
+
 
 export default WeekContainer;
 
