@@ -22,9 +22,9 @@ const DayCard = ({ reading, degreeType }) => {
         <h2>{degreeType === "celsius" ? celsius + "°C" : fahrenheit + "°C"}</h2>
         <div className="card-body">
           <p className="card-text">{reading.weather[0].description}</p>
-          <p className="card-text">Humidity {dailyData.humidity}%</p>
-          <p className="card-text">Max. Temp {dailyData.temp_max} ºC</p>
-          <p className="card-text">Max. Temp {dailyData.temp_min} ºC</p>
+          <p className="card-text">Humidity: {dailyData.humidity} %</p>
+          <p className="card-text">Max. Temp: {dailyData.temp_max} ºC</p> {/* list.main.temp_max ?? */}
+          <p className="card-text">Max. Temp: {dailyData.temp_min} ºC</p> {/* list.main.temp_min ?? */}
         </div>
       </div>
     </div>
