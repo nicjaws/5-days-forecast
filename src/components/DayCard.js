@@ -5,8 +5,8 @@ var moment = require('moment');
 
 const DayCard = ({ reading, degreeType }) => {
   let newDate = new Date();
-  const fullData = reading.dt * 1000
-  newDate.setTime(fullData)
+  const dailyData = reading.dt * 1000
+  newDate.setTime(dailyData)
 
   const fahrenheit = Math.round(reading.main.temp)
   const celsius = Math.round((fahrenheit - 32) * 5/9)
@@ -24,8 +24,8 @@ const DayCard = ({ reading, degreeType }) => {
         <div className="card-body">
           <p className="card-text">{reading.weather[0].description}</p>
           <p className="card-text">Humidity: {reading.main.humidity} %</p>
-          <p className="card-text">Max. Temp: {reading.main.temp_max} ºC</p> {/* list.main.temp_max ?? */}
-          <p className="card-text">Min. Temp: {reading.main.temp_min} ºC</p> {/* list.main.temp_min ?? */}
+          <p className="card-text">Max. Temp: {reading.main.temp_max} ºC</p>
+          <p className="card-text">Min. Temp: {reading.main.temp_min} ºC</p> 
         </div>
       </div>
     </div>
