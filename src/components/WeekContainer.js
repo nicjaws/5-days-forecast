@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import DayCard from './DayCard'
 
+var moment = require('moment');
+
 class WeekContainer extends Component {
 
     state = {
@@ -40,6 +42,7 @@ class WeekContainer extends Component {
           <div className="container">
           <h1 className="display-1 jumbotron">5 Days Forecast</h1>
           <h5 className="display-5 text-muted">LONDON, UK</h5>
+          <h6>Updated {moment().format('h:mm a')}</h6>
             <div className="row justify-content-center">
     
               {this.formatDayCards()}
