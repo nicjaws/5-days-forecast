@@ -5,8 +5,8 @@ var moment = require('moment');
 
 const DayCard = ({ reading, degreeType }) => {
   let newDate = new Date();
-  const dailyData = reading.dt * 1000
-  newDate.setTime(dailyData)
+  const fullData = reading.dt * 1000
+  newDate.setTime(fullData)
 
   const fahrenheit = Math.round(reading.main.temp)
   const celsius = Math.round((fahrenheit - 32) * 5/9)

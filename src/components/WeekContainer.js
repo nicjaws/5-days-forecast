@@ -7,7 +7,6 @@ class WeekContainer extends Component {
 
     state = {
         fullData: [],
-        dailyData: [],
         degreeType: "celsius"
       }
     
@@ -25,24 +24,25 @@ class WeekContainer extends Component {
         fetch(weatherURL)
         .then(res => res.json())
         .then(data => {
-          const dailyData = data.list.filter((reading) => reading.dt_txt.includes("18:00:00"))
+          const fullData = data.list.filter((reading) => reading.dt_txt.includes("18:00:00"))
           this.setState({
-            fullData: data.list,
-            dailyData: dailyData
+            
+            fullData: fullData
           }, () => console.log(this.state))
         })
       }
     
       formatDayCards = () => {
-        return this.state.dailyData.map((reading, index) => <DayCard reading={reading} key={index} />)
+        return this.state.fullData.map((reading, index) => <DayCard reading={reading} key={index} />)
       }
     
       render() {
         return (
           <div className="container">
           <h1 className="display-1 jumbotron">5 Days Forecast</h1>
-          <h5 className="display-5 text-muted">LONDON, UK</h5>
-          <h6>Updated {moment().format('h:mm a')}</h6>
+          <h3 className="display-5 text-muted">LONDON, UK</h3>
+          <h5>Updated {moment().format('h:mm a')}</h5>
+          <br/>
             <div className="row justify-content-center">
     
               {this.formatDayCards()}
