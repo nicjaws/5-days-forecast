@@ -32,6 +32,7 @@ class WeekContainer extends Component {
 
           }
           console.log(weekData)
+
           
             // weekData para cada i, obtener min y max de todas las muestras
             // mostrar en frontend min y max obtenido de todas las muestras de cada día
